@@ -1,3 +1,8 @@
+# Config
+.config
+combined.json
+config.json
+error.json
 # Logs
 logs
 *.log

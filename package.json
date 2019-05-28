@@ -1,0 +1,27 @@
+{
+  "name": "pike_server",
+  "version": "1.0.0",
+  "description": "This server is for Michael's portfolio website. Ran on a raspberry pi.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MikeJLeon/pike_server.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MikeJLeon/pike_server/issues"
+  },
+  "homepage": "https://github.com/MikeJLeon/pike_server#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongodb": "^3.2.6",
+    "nodemon": "^1.19.1",
+    "winston": "^3.2.1"
+  }
+}
