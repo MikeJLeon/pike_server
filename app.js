@@ -23,10 +23,10 @@ const logger = winston.createLogger({
   ]
 });
 app.get("/api/getLog", (req, res) => {
-  logger.stream({ start: -1 }).on("log", function(log) {
+  logger.stream({ start: -1 }).on("log", function (log) {
     test = log.message;
   });
-  
+
 });
 app.get("/api/getEvents", (req, res) => {
   const client = new MongoClient(uri, { useNewUrlParser: true });
@@ -37,9 +37,10 @@ app.get("/api/getEvents", (req, res) => {
         res.status(500).send(error);
         console.log(":/");
       }
+      console.log(result)
       logger.log({
         level: "info",
-        message: str((result.length(), null, 2))
+        message: (result.length)
       });
       client.close();
       res.send(result);
