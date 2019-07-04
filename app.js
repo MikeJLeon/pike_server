@@ -6,6 +6,7 @@ const HOSTNAME = "0.0.0.0";
 const MongoClient = require("mongodb").MongoClient;
 const uri = config["mConn"];
 const winston = require("winston");
+const test = [];
 var cors = require("cors");
 app.use(cors());
 console.log(config);
@@ -23,10 +24,12 @@ const logger = winston.createLogger({
   ]
 });
 app.get("/api/getLog", (req, res) => {
-  logger.stream({ start: -1 }).on("log", function (log) {
-    test = log.message;
-  });
-
+  logger
+    .stream({ start: -1 })
+    .on("log", function(log) {
+      console.log(log.message)
+    })
+    res.send(true)
 });
 app.get("/api/getEvents", (req, res) => {
   const client = new MongoClient(uri, { useNewUrlParser: true });
@@ -37,10 +40,10 @@ app.get("/api/getEvents", (req, res) => {
         res.status(500).send(error);
         console.log(":/");
       }
-      console.log(result)
+      console.log(result);
       logger.log({
         level: "info",
-        message: (result.length)
+        message: result.length
       });
       client.close();
       res.send(result);
