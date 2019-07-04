@@ -1,10 +1,10 @@
 const express = require("express");
 const app = express();
-const config = require("./config.json");
+const config = process.env.PORT || require("./config.json");
 const PORT = process.env.PORT || 3000;
-const HOSTNAME = config["heroku"];
+const HOSTNAME = process.env.heroku || config["heroku"];
 const MongoClient = require("mongodb").MongoClient;
-const uri = config["mConn"];
+const uri = process.env.mConn || config["mConn"];
 const winston = require("winston");
 const test = [];
 var cors = require("cors");
