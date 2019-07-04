@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
-const config = process.env.PORT || require("./config.json");
+const config = require("./config.json") || "";
 const PORT = process.env.PORT || 3000;
-const HOSTNAME = process.env.heroku || "0.0.0.0";
+const HOSTNAME = process.env.heroku || "Localhost";
 const MongoClient = require("mongodb").MongoClient;
 const uri = process.env.mConn || config["mConn"];
 const winston = require("winston");
@@ -51,6 +51,6 @@ app.get("/api/getEvents", (req, res) => {
   });
 });
 
-app.listen(PORT, HOSTNAME, () => {
+app.listen(PORT, () => {
   console.log(`Server running at ${HOSTNAME} on port ${PORT}.`);
 });
