@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const config = require("./config.json") || "";
+const config = process.env.PORT || require("./config.json");
 const PORT = process.env.PORT || 3000;
 const HOSTNAME = process.env.heroku || "Localhost";
 const MongoClient = require("mongodb").MongoClient;
