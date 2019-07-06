@@ -16,6 +16,7 @@ import os
 import json
 import time
 import uuid
+import sys
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import selenium.webdriver.chrome.service as service
@@ -45,7 +46,7 @@ QUEUE = []
 OUTPUT = {}
 DATA = {}
 SOUP = []
-OFA = "https://outdoorsforall.org/events-news/calendar/"
+OFA = "http://outdoorsforall.org/events-news/calendar/"
 # GOOGLE_CHROME_BIN = os.environ['GOOGLE_CHROME_SHIM']
 
 
@@ -54,12 +55,11 @@ def ofa_crawl(url):
     global FOUND_LIST
     global SOUP
     chrome_options = webdriver.ChromeOptions()
-    chrome_options.binary_location = "/usr/bin/chromium-browser"
+    #chrome_options.binary_location = "/usr/bin/chromium-browser"
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--disable-gpu')
-    # driver = webdriver.Chrome(executable_path="C:\\Users\\micha\\Documents\\GitHub\\web-crawler-portfolio\\chromedriver", chrome_options=chrome_options)
-    driver = webdriver.Chrome(
-        executable_path="/usr/bin/chromedriver", options=chrome_options)
+    driver = webdriver.Chrome(executable_path="./python/chromedriver.exe", chrome_options=chrome_options)
+    #driver = webdriver.Chrome(executable_path="/usr/bin/chromedriver", options=chrome_options)
     pages = 1
     # Grab all links on calendar for 3 months from current month
     print("Starting OFA Crawler; " + str(datetime.now()))

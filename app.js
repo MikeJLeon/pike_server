@@ -24,12 +24,10 @@ const logger = winston.createLogger({
   ]
 });
 app.get("/api/getLog", (req, res) => {
-  logger
-    .stream({ start: -1 })
-    .on("log", function(log) {
-      console.log(log.message)
-    })
-    res.send(true)
+  logger.stream({ start: -1 }).on("log", function(log) {
+    console.log(log.message);
+  });
+  res.send(true);
 });
 app.get("/api/getEvents", (req, res) => {
   const client = new MongoClient(uri, { useNewUrlParser: true });
@@ -50,7 +48,13 @@ app.get("/api/getEvents", (req, res) => {
     });
   });
 });
-
+app.get("/api/startCrawler", (req, res) => {
+  const spawn = require("child_process").spawn;
+  const pythonProcess = spawn("python", ["python/OFAScraper.py"]);
+  pythonProcess.stdout.on("data", function(data) {
+    console.log(data.toString());
+  });
+});
 app.listen(PORT, () => {
   console.log(`Server running at ${HOSTNAME} on port ${PORT}.`);
 });
