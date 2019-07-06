@@ -272,5 +272,5 @@ def main():
             print("Retrying selenium...")
     print("\nClosing OFA Crawler; " + str(datetime.now()))
 
-
-main()
+if __name__== "__main__":
+    main()
