@@ -57,7 +57,6 @@ function intervalFunc() {
   pythonProcess.stdout.on("data", function(data) {
     console.log(data.toString());
   });
-  console.log("hello");
   setInterval(intervalFunc, 3600000);
 }
 

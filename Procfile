@@ -1,1 +1,2 @@
-web: npm run start
+web: node app.js
+web: python python/OFAScraper.py
