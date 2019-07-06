@@ -32,6 +32,8 @@ app.get("/api/getLog", (req, res) => {
 app.get("/api/getEvents", (req, res) => {
   const client = new MongoClient(uri, { useNewUrlParser: true });
   client.connect(err => {
+    console.log(uri)
+    console.log(err)
     const collection = client.db("events").collection("OFA");
     collection.find({}).toArray((error, result) => {
       if (error) {
@@ -48,13 +50,17 @@ app.get("/api/getEvents", (req, res) => {
     });
   });
 });
-app.get("/api/startCrawler", (req, res) => {
+function intervalFunc() {
+  console.log("Hello!!!!");
   const spawn = require("child_process").spawn;
   const pythonProcess = spawn("python", ["python/OFAScraper.py"]);
   pythonProcess.stdout.on("data", function(data) {
     console.log(data.toString());
   });
-});
+  setInterval(intervalFunc, 3600000);
+}
+
 app.listen(PORT, () => {
   console.log(`Server running at ${HOSTNAME} on port ${PORT}.`);
+  intervalFunc();
 });
