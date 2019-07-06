@@ -1,0 +1,7 @@
+selenium
+bs4
+datetime
+python-dateutil
+webdriver_manager
+pymongo
+dnspython
